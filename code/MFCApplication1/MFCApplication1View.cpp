@@ -667,31 +667,13 @@ void CMFCApplication1View::Close()
 
 void CMFCApplication1View::histCompute(BYTE*image, int width, int height)
 {
-	for (int i = 0; i < 256; i++)this->hist[i] = 0;
-	for (int i = 0; i < height; i++) {
-		for(int j=0;j<width;j++)
-		this->hist[image[i*width+j]]++;
-	}
 	//计算直方图
 }
 
 void CMFCApplication1View::hisEqualiz(BYTE* image, int w, int h, BYTE* outImg)
 {
-	histCompute(image, w, h);
-	int sumHist[256] = { 0 };
-	sumHist[0] = hist[0];
-	for (int i = 1; i < 256; i++) {
-		sumHist[i] = sumHist[i - 1]+hist[i];
-	}
 	//直方图均衡
-	int a0 = w*h;
-	int sum = 0;
-	for (int i = 0; i < a0; i++) {
-		int gray = image[i];
-		sum += this->hist[gray];
-		BYTE newGray = (255 * sumHist[gray]) / (a0);
-		outImg[i] = newGray;
-	}
+
 }
 
 
